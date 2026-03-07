@@ -43,7 +43,7 @@ This project is **heavily inspired by [Vitesse](https://github.com/antfu-collect
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/vuetrix.git
+git clone https://github.com/art70x/Vuetrix.git
 
 # Navigate to the project
 cd vuetrix
@@ -71,13 +71,13 @@ pnpm preview
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please see [CONTRIBUTING.md](https://github.com/yourusername/vuetrix/blob/main/CONTRIBUTING.md) for guidelines.
+Contributions are welcome! Please see [CONTRIBUTING.md](https://github.com/art70x/Vuetrix/blob/main/CONTRIBUTING.md) for guidelines.
 
 ---
 
 ## 📄 License
 
-This project is open source under the [MIT License](https://github.com/yourusername/vuetrix/blob/main/LICENSE).
+This project is open source under the [MIT License](https://github.com/art70x/Vuetrix/blob/main/LICENSE).
 
 ---
 

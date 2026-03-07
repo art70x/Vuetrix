@@ -138,7 +138,7 @@ To maintain a high-quality codebase, please follow these guidelines:
 
 If you’re unsure about something or need guidance:
 
-- Start a [discussion](https://github.com/art70x/app/discussions).
+- Start a [discussion](https://github.com/art70x/Vuetrix/discussions).
 - Join our community for support and collaboration.
 
 Thank you ✨ for contributing to Nuxpert! Your effort makes this project better for everyone.
