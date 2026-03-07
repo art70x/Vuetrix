@@ -1,11 +1,10 @@
-import './assets/main.css'
-
-import { createApp } from 'vue'
+import { ViteSSG } from 'vite-ssg'
+import { routes } from 'vue-router/auto-routes'
 import App from './App.vue'
-import router from './router'
 
-const app = createApp(App)
+import '@/main.css'
 
-app.use(router)
-
-app.mount('#app')
+export const createApp = ViteSSG(App, {
+  routes,
+  base: import.meta.env.BASE_URL,
+})

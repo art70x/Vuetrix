@@ -2,7 +2,7 @@
   "explorer.fileNesting.enabled": true,
   "explorer.fileNesting.patterns": {
     "tsconfig.json": "tsconfig.*.json, env.d.ts, typed-router.d.ts",
-    "vite.config.*": "eslint*, .oxlint*, .oxfmt*, prettier*, .editorconfig, uno.config.ts",
+    "vite.config.*": "eslint*, oxlint*, prettier*, .editorconfig",
     "package.json": "pnpm*"
   },
   "editor.codeActionsOnSave": {
