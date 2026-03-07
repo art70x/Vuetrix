@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const {appname, description} = useMetadata()
+const { appname, description } = useMetadata()
 
 useSeoMeta({
   title: appname,
