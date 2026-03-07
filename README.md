@@ -4,8 +4,6 @@
 
 This project is **heavily inspired by [Vitesse](https://github.com/antfu-collective/vitesse) and [Nuxpert](https://github.com/MFM-347/nuxpert)**. Their architecture, CI workflow, formatting standards, and Vite configuration shaped the design of Vuetrix.
 
----
-
 ## 🚀 Key Features
 
 - **⚡ Lightning-Fast Development** – Powered by **Vite** for instant hot module replacement and optimized builds.
@@ -18,8 +16,6 @@ This project is **heavily inspired by [Vitesse](https://github.com/antfu-collect
 - **💨 Font Optimization** – Web fonts preloaded and optimized via `fontless`.
 - **🛠 Developer Tooling** – Preconfigured ESLint, Prettier, OXLint, Vue DevTools, and dependency management with Taze.
 
----
-
 ## 🛠 Technology Stack
 
 - **Framework:** Vite + Vue 3 + TypeScript
@@ -29,8 +25,6 @@ This project is **heavily inspired by [Vitesse](https://github.com/antfu-collect
 - **Static Site Generation:** `vite-ssg` + sitemap generator
 - **Developer Tools:** ESLint, Prettier, OXLint, Vue DevTools, Auto Imports, Component Resolver
 - **Fonts:** `fontless` for optimized web fonts
-
----
 
 ## 🚀 Quick Start
 
@@ -67,19 +61,13 @@ pnpm build
 pnpm preview
 ```
 
----
-
 ## 🤝 Contributing
 
 Contributions are welcome! Please see [CONTRIBUTING.md](https://github.com/art70x/Vuetrix/blob/main/CONTRIBUTING.md) for guidelines.
 
----
-
 ## 📄 License
 
 This project is open source under the [MIT License](https://github.com/art70x/Vuetrix/blob/main/LICENSE).
-
----
 
 ## 🙏 Acknowledgments
 
@@ -87,8 +75,6 @@ This project is open source under the [MIT License](https://github.com/art70x/Vu
 - [DevUI](https://www.devui.in/) – Modern UI resources and design inspiration for developers.
 - [Vitesse](https://github.com/antfu-collective/vitesse) – Starter template that inspired project structure, workflow, and configuration.
 - [Nuxpert](https://github.com/MFM-347/nuxpert) – Source of architectural patterns, CI workflow, and formatting standards.
-
----
 
 <p align="center">
   Made with ❤️ for developers by developers
