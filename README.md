@@ -71,10 +71,11 @@ This project is open source under the [MIT License](https://github.com/art70x/Vu
 
 ## 🙏 Acknowledgments
 
-- [Shadcn Vue](https://shadcn-vue.com/) – Accessible and customizable Vue component library.
-- [DevUI](https://www.devui.in/) – Modern UI resources and design inspiration for developers.
-- [Vitesse](https://github.com/antfu-collective/vitesse) – Starter template that inspired project structure, workflow, and configuration.
-- [Nuxpert](https://github.com/MFM-347/nuxpert) – Source of architectural patterns, CI workflow, and formatting standards.
+- [Shadcn Vue](https://shadcn-vue.com) – Accessible and customizable Vue component library.
+- [DevUI](https://www.devui.in) – Modern UI resources and design inspiration for developers.
+- [Vitesse (antfu)](https://github.com/antfu-collective/vitesse) – Starter template that inspired project structure, workflow, and configuration.
+- [Nuxpert (MFM-347)](https://github.com/MFM-347/nuxpert) – Source of architectural patterns, CI workflow, and formatting standards.
+- [Vue Template (alexanderop)](https://github.com/alexanderop/vue-template) – Source of Oxlint and ESLint configuration.
 
 <p align="center">
   Made with ❤️ for developers by developers
