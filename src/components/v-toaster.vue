@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import { Toaster } from 'vue-sonner'
 import 'vue-sonner/style.css'
+
+const currentTheme = computed(() => (isDark.value ? 'dark' : 'light'))
 </script>
 
 <template>
@@ -10,14 +12,7 @@ import 'vue-sonner/style.css'
     closeButtonPosition="top-right"
     :duration="5000"
     class="group"
-    :toastOptions="{
-      style: {
-        '--normal-bg': 'var(--popover)',
-        '--normal-text': 'var(--popover-foreground)',
-        '--normal-border': 'var(--border)',
-        '--border-radius': 'var(--radius)',
-      },
-    }"
+    :theme="currentTheme"
   >
     <template #loading-icon>
       <div>

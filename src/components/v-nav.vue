@@ -1,7 +1,14 @@
 <script setup lang="ts">
 import { toggleDark } from '@/lib/utils'
+import { toast } from 'vue-sonner'
 
 const { appname } = useMetadata()
+const currentTheme = isDark ? 'dark' : 'light'
+
+const toggleTheme = () => {
+  toggleDark()
+  toast('Theme', { description: `Theme changed to ${currentTheme} mode` })
+}
 </script>
 
 <template>
@@ -21,7 +28,7 @@ const { appname } = useMetadata()
 
         <!-- Right -->
         <div class="flex items-center gap-4">
-          <Button @click="toggleDark()" variant="outline" size="icon-sm">
+          <Button @click="toggleTheme()" variant="outline" size="icon-sm">
             <IPhMoon
               class="size-5 scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90"
             />
