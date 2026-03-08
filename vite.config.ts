@@ -49,9 +49,10 @@ export default defineConfig({
 
     // https://github.com/unjs/fontaine
     fontless({
+      priority: ['google'],
       defaults: {
         preload: true,
-        weights: [400, 500, 600, 700, 800],
+        subsets: ['latin'],
         fallbacks: {
           'sans-serif': ['system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'Arial'],
           monospace: ['JetBrains Mono', 'Fira Code', 'Source Code Pro', 'Menlo', 'Consolas'],
@@ -69,7 +70,10 @@ export default defineConfig({
     script: 'async',
     formatting: 'minify',
     onFinished() {
-      generateSitemap()
+      generateSitemap({
+        basePath: 'https://vuetrix.vercel.app',
+        generateRobotsTxt: true,
+      })
     },
   },
 
