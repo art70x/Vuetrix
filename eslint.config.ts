@@ -15,9 +15,9 @@ export default defineConfigWithVueTs(
   // Disabled rules
   {
     rules: {
-      "unicorn/filename-case": "off",
-      "unicorn/no-abusive-eslint-disable": 'off',
-      "unicorn/prevent-abbreviations": 'warn',
+      'unicorn/filename-case': 'off',
+      'unicorn/no-abusive-eslint-disable': 'off',
+      'unicorn/prevent-abbreviations': 'warn',
     },
   },
 
@@ -25,7 +25,7 @@ export default defineConfigWithVueTs(
   {
     files: ['src/**/*.vue'],
     rules: {
-      'vue/multi-word-component-names': ['warn', {ignores: ['App']}],
+      'vue/multi-word-component-names': ['warn', { ignores: ['App'] }],
       'vue/component-name-in-template-casing': ['error', 'PascalCase'],
       'vue/prop-name-casing': ['error', 'camelCase'],
       'vue/custom-event-name-casing': ['error', 'kebab-case'],
