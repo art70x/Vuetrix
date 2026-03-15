@@ -14,7 +14,7 @@ This project is **heavily inspired by [Vitesse](https://github.com/antfu-collect
 - **🔧 Auto Imports & Components** – `unplugin-auto-import` and `unplugin-vue-components` simplify development.
 - **🖋 SEO-Friendly Static Builds** – Full SSG support with auto sitemap generation.
 - **💨 Font Optimization** – Web fonts preloaded and optimized via `fontless`.
-- **🛠 Developer Tooling** – Preconfigured ESLint, Prettier, OXLint, Vue DevTools, and dependency management with Taze.
+- **🛠 Developer Tooling** – Preconfigured ESLint, Oxfmt, Oxlint, Vue DevTools, and dependency management with Taze.
 
 ## 🛠 Technology Stack
 
@@ -23,7 +23,7 @@ This project is **heavily inspired by [Vitesse](https://github.com/antfu-collect
 - **Icons:** Phosphor Icons (`unplugin-icons`)
 - **Routing:** Vue Router with file-based auto-routing
 - **Static Site Generation:** `vite-ssg` + sitemap generator
-- **Developer Tools:** ESLint, Prettier, OXLint, Vue DevTools, Auto Imports, Component Resolver
+- **Developer Tools:** ESLint, Oxfmt, Oxlint, Vue DevTools, Auto Imports, Component Resolver
 - **Fonts:** `fontless` for optimized web fonts
 
 ## 🚀 Quick Start
