@@ -1,19 +1,15 @@
-/**
- * @see https://prettier.io/docs/configuration
- * @type {import("prettier").Config}
- */
+import { defineConfig } from 'oxfmt'
 
-export default {
+export default defineConfig({
   semi: false,
   singleQuote: true,
   tabWidth: 2,
   printWidth: 100,
-  plugins: [
-    'prettier-plugin-organize-attributes',
-    'prettier-plugin-css-order',
-    'prettier-plugin-organize-imports',
-    'prettier-plugin-tailwindcss',
-  ],
+  sortTailwindcss: {
+    stylesheet: './src/main.css',
+    preserveWhitespace: true,
+    preserveDuplicates: true,
+  },
   attributeGroups: [
     '^((v-bind)?:?|v-)is$',
     '^v-for$',
@@ -41,7 +37,9 @@ export default {
   ],
   cssDeclarationSorterOrder: 'frakto',
   cssDeclarationSorterKeepOverrides: false,
-  tailwindStylesheet: './src/main.css',
-  tailwindPreserveWhitespace: true,
-  tailwindPreserveDuplicates: true,
-}
+  sortImports: {
+    type: 'natural',
+    order: 'asc',
+  },
+  ignorePatterns: [],
+})

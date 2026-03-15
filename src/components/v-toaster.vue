@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { Toaster } from 'vue-sonner'
+
 import 'vue-sonner/style.css'
 
 const currentTheme = computed(() => (isDark.value ? 'dark' : 'light'))

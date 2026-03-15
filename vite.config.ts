@@ -1,8 +1,9 @@
+import { fileURLToPath, URL } from 'node:url'
+
 import tailwindcss from '@tailwindcss/vite'
 import { unheadVueComposablesImports } from '@unhead/vue'
 import vue from '@vitejs/plugin-vue'
 import { fontless } from 'fontless'
-import { fileURLToPath, URL } from 'node:url'
 import AutoImport from 'unplugin-auto-import/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 import Icons from 'unplugin-icons/vite'
@@ -43,7 +44,6 @@ export default defineConfig({
 
     // https://github.com/vuejs/router
     VueRouter({
-      dts: 'src/route-map.d.ts',
       routesFolder: 'src/pages',
     }),
 
