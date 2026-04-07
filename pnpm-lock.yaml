@@ -3942,7 +3942,7 @@ snapshots:
 
   ast-kit@2.2.0:
     dependencies:
-      '@babel/parser': 7.29.2
+      '@babel/parser': 7.29.0
       pathe: 2.0.3
 
   ast-walker-scope@0.8.3:
