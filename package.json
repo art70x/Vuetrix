@@ -55,7 +55,7 @@
     "unplugin-auto-import": "^21.0.0",
     "unplugin-icons": "^23.0.1",
     "unplugin-vue-components": "^31.0.0",
-    "vite": "^8.0.5",
+    "vite": "^8.0.16",
     "vite-plugin-vue-devtools": "^8.1.0",
     "vite-ssg": "28.3.0",
     "vite-ssg-sitemap": "^0.10.0",
