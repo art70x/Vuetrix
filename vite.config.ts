@@ -45,6 +45,7 @@ export default defineConfig({
     // https://github.com/vuejs/router
     VueRouter({
       routesFolder: 'src/pages',
+      dts: 'src/typed-router.d.ts',
     }),
 
     // https://github.com/unjs/fontaine

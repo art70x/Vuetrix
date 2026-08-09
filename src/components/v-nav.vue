@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { toast } from 'vue-sonner'
 
-import { toggleDark } from '@/lib/utils'
+import { toggleDark } from '@/lib/theme'
 
 const { appname } = useMetadata()
 const currentTheme = isDark ? 'dark' : 'light'

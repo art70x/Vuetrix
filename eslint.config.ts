@@ -18,6 +18,7 @@ export default defineConfigWithVueTs(
       'unicorn/filename-case': 'off',
       'unicorn/no-abusive-eslint-disable': 'off',
       'unicorn/prevent-abbreviations': 'warn',
+      'unicorn/name-replacements': 'warn',
     },
   },
 
