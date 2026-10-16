@@ -4,6 +4,8 @@ A Vue 3 + TypeScript starter with Vite 8, Tailwind CSS 4, and shadcn-vue. It use
 
 Vuetrix follows the project layout of [Vitesse](https://github.com/antfu/vitesse) and draws on CI and configuration ideas from [Nuxpert](https://github.com/MFM-347/nuxpert).
 
+See [Why Vuetrix](docs/why-vuetrix.md).
+
 ## What is included
 
 - File-based routing from `src/pages` with unplugin-vue-router

@@ -44,3 +44,9 @@
 - [x] Step 4: Update the GitHub description
 - [x] Step 5: Verify
 - [x] Step 6: Commit
+
+## Task 6: Say why Vuetrix exists
+
+- [x] Step 1: Write the comparison
+- [x] Step 2: Check every row against the repos before committing
+- [x] Step 3: Link it from the README and commit
