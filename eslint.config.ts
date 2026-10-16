@@ -14,6 +14,7 @@ export default defineConfigWithVueTs(
   // Disabled rules
   {
     rules: {
+      'unicorn/no-top-level-side-effects': 'off',
       'unicorn/filename-case': 'off',
       'unicorn/no-abusive-eslint-disable': 'off',
       'unicorn/prevent-abbreviations': 'warn',
