@@ -1,37 +1,25 @@
 # Vuetrix
 
-**Vuetrix** is a modern, developer-focused **Vue 3 + TypeScript web app starter**. It provides a fast, scalable, and production-ready foundation for building sophisticated web applications.
+A Vue 3 + TypeScript starter with Vite 8, Tailwind CSS 4, and shadcn-vue. It uses Oxlint and Oxfmt for linting and formatting, generates static HTML with vite-ssg, and creates a sitemap.
 
-This project is **heavily inspired by [Vitesse](https://github.com/antfu-collective/vitesse) and [Nuxpert](https://github.com/MFM-347/nuxpert)**. Their architecture, CI workflow, formatting standards, and Vite configuration shaped the design of Vuetrix.
+Vuetrix follows the project layout of [Vitesse](https://github.com/antfu/vitesse) and draws on CI and configuration ideas from [Nuxpert](https://github.com/MFM-347/nuxpert).
 
-## 🚀 Key Features
+## What is included
 
-- **⚡ Lightning-Fast Development** – Powered by **Vite** for instant hot module replacement and optimized builds.
-- **🧠 Type-Safe Code** – Built with **TypeScript** for reliability and maintainability.
-- **🎨 Modern UI** – Uses **Tailwind CSS** with **Shadcn Vue** for utility-first, accessible, reusable components.
-- **🧩 Icons** – Integrated **Phosphor Icons** via `unplugin-icons`.
-- **📂 File-Based Routing** – Auto-generated routes with **Vue Router**.
-- **🔧 Auto Imports & Components** – `unplugin-auto-import` and `unplugin-vue-components` simplify development.
-- **🖋 SEO-Friendly Static Builds** – Full SSG support with auto sitemap generation.
-- **💨 Font Optimization** – Web fonts preloaded and optimized via `fontless`.
-- **🛠 Developer Tooling** – Preconfigured ESLint, Oxfmt, Oxlint, Vue DevTools, and dependency management with Taze.
+- File-based routing from `src/pages` with unplugin-vue-router
+- Auto-imports for Vue, Vue Router, and VueUse, plus automatic component registration
+- shadcn-vue components installed directly into the repository
+- Phosphor icons available as components
+- Static site generation with a generated sitemap and `robots.txt`
+- Font preloading through fontless
+- Oxlint, Oxfmt, ESLint, and Vitest
 
-## 🛠 Technology Stack
-
-- **Framework:** Vite + Vue 3 + TypeScript
-- **Styling:** Tailwind CSS + Shadcn Vue + Tailwind Merge + TW Animate CSS
-- **Icons:** Phosphor Icons (`unplugin-icons`)
-- **Routing:** Vue Router with file-based auto-routing
-- **Static Site Generation:** `vite-ssg` + sitemap generator
-- **Developer Tools:** ESLint, Oxfmt, Oxlint, Vue DevTools, Auto Imports, Component Resolver
-- **Fonts:** `fontless` for optimized web fonts
-
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
-- **Node.js 20+**
-- **Package Manager:** npm, pnpm, or bun
+- **Node.js 22 or later**
+- **Package manager:** pnpm (recommended), npm, or Bun
 
 ### Installation
 
@@ -40,43 +28,39 @@ This project is **heavily inspired by [Vitesse](https://github.com/antfu-collect
 git clone https://github.com/art70x/Vuetrix.git
 
 # Navigate to the project
-cd vuetrix
+cd Vuetrix
 
 # Install dependencies
 pnpm install
 
-# Start development server
+# Start the development server
 pnpm dev
 ```
 
-Access the app at `http://localhost:3000`.
+Open `http://localhost:3000` in your browser.
 
 ### Build for Production
 
 ```bash
-# Create production build
+# Create a production build
 pnpm build
 
-# Preview production build
+# Preview the production build
 pnpm preview
 ```
 
-## 🤝 Contributing
+## Contributing
 
-Contributions are welcome! Please see [CONTRIBUTING.md](https://github.com/art70x/Vuetrix/blob/main/CONTRIBUTING.md) for guidelines.
+Contributions are welcome. See [CONTRIBUTING.md](https://github.com/art70x/Vuetrix/blob/main/CONTRIBUTING.md) for contribution guidelines.
 
-## 📄 License
+## License
 
-This project is open source under the [MIT License](https://github.com/art70x/Vuetrix/blob/main/LICENSE).
+Vuetrix is licensed under the [MIT License](https://github.com/art70x/Vuetrix/blob/main/LICENSE).
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
-- [Shadcn Vue](https://shadcn-vue.com) – Accessible and customizable Vue component library.
-- [DevUI](https://www.devui.in) – Modern UI resources and design inspiration for developers.
-- [Vitesse (antfu)](https://github.com/antfu-collective/vitesse) – Starter template that inspired project structure, workflow, and configuration.
-- [Nuxpert (MFM-347)](https://github.com/MFM-347/nuxpert) – Source of architectural patterns, CI workflow, and formatting standards.
-- [Vue Template (alexanderop)](https://github.com/alexanderop/vue-template) – Source of Oxlint and ESLint configuration.
-
-<p align="center">
-  Made with ❤️ for developers by developers
-</p>
+- [shadcn-vue](https://www.shadcn-vue.com/) - Vue components built with accessibility and customization in mind.
+- [DevUI](https://www.devui.in/) - UI resources and design inspiration.
+- [Vitesse](https://github.com/antfu/vitesse) - Inspiration for project structure and configuration.
+- [Nuxpert](https://github.com/MFM-347/nuxpert) - Reference for CI workflows and configuration.
+- [Vue Template](https://github.com/alexanderop/vue-template) - Reference for Oxlint and ESLint configuration.

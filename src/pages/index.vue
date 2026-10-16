@@ -9,6 +9,20 @@ useSeo({
 
 <template>
   <div class="container">
-    <h1 class="title">Home</h1>
+    <h1 class="title">Vuetrix</h1>
+    <p>A Vue 3 starter with file routing, shadcn-vue, and static builds.</p>
   </div>
+
+  <section class="container" id="features">
+    <h2>What is included</h2>
+    <ul>
+      <li>File-based routing with unplugin-vue-router</li>
+      <li>Auto-imports for Vue, Vue Router, and VueUse</li>
+      <li>shadcn-vue components</li>
+      <li>Phosphor icons as components</li>
+      <li>Static site generation with a sitemap and robots.txt</li>
+      <li>Font preloading through fontless</li>
+      <li>Oxlint, Oxfmt, ESLint, and Vitest</li>
+    </ul>
+  </section>
 </template>

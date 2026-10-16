@@ -29,3 +29,18 @@
 - [x] Step 4: Run it
 - [x] Step 5: Wire CI
 - [x] Step 6: Commit
+
+## Task 4: Add an agent and contributor context file
+
+ - [x] Step 1: Create the file
+ - [x] Step 2: Verify the script names match
+ - [x] Step 3: Commit
+
+ ## Task 5: Rewrite the public copy
+
+- [x] Step 1: Replace the README intro
+- [x] Step 2: Fix the Node requirement and closing line
+- [x] Step 3: Replace the home page tagline
+- [x] Step 4: Update the GitHub description
+- [x] Step 5: Verify
+- [x] Step 6: Commit
