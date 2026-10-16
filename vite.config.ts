@@ -40,7 +40,7 @@ export default defineConfig({
     }),
 
     // https://github.com/unplugin/unplugin-icons
-    Icons({ autoInstall: true }),
+    Icons(),
 
     // https://github.com/vuejs/router
     VueRouter({

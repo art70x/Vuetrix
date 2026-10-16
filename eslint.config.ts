@@ -1,5 +1,4 @@
 import { defineConfigWithVueTs, vueTsConfigs } from '@vue/eslint-config-typescript'
-import skipFormatting from 'eslint-config-prettier/flat'
 import pluginOxlint from 'eslint-plugin-oxlint'
 import pluginUnicorn from 'eslint-plugin-unicorn'
 import pluginVue from 'eslint-plugin-vue'
@@ -58,7 +57,5 @@ export default defineConfigWithVueTs(
   },
 
   // Disable rules handled by Oxlint
-  ...pluginOxlint.buildFromOxlintConfigFile('./oxlint.config.ts'),
-
-  skipFormatting,
+  ...pluginOxlint.buildFromOxlintConfigFile('./oxlint.config.ts')
 )
