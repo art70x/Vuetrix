@@ -7,69 +7,64 @@ on:
     branches: [main]
   merge_group:
 
-# cancel in-progress runs on new commits to same PR
+# Cancel in-progress runs on new commits to the same PR
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.sha }}
   cancel-in-progress: true
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  types:
-    name: 💪 Type check
+  check:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        script: [type-check, test]
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v7
+      - uses: actions/checkout@v7
 
-      - name: Setup Node
-        uses: actions/setup-node@v7
+      - uses: pnpm/action-setup@v6
+
+      - uses: actions/setup-node@v7
         with:
           node-version: lts/*
+          cache: pnpm
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v6
+      - run: pnpm install --frozen-lockfile
 
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Run type check
-        run: pnpm type-check
+      - run: pnpm ${{ matrix.script }}
 
   fix:
-    name: 🧹 Format & Lint
+    # Skip merge queue and fork PRs (fork tokens can't push)
+    if: >-
+      github.event_name != 'merge_group' &&
+      (github.event_name != 'pull_request' ||
+      github.event.pull_request.head.repo.full_name == github.repository)
     runs-on: ubuntu-latest
-    if: github.event_name != 'merge_group'
+    permissions:
+      contents: write
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v7
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.head_ref }}
 
-      - name: Setup Node
-        uses: actions/setup-node@v7
+      - uses: pnpm/action-setup@v6
+
+      - uses: actions/setup-node@v7
         with:
           node-version: lts/*
+          cache: pnpm
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v6
+      - run: pnpm install --frozen-lockfile
 
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+      - run: pnpm lint
 
-      - name: Lint & auto-fix
-        run: pnpm lint
+      - run: pnpm fmt
 
-      - name: Run Tests
-        run: pnpm test
-
-      - name: Format code
-        run: pnpm fmt
-
-      - name: Commit fixes
-        uses: stefanzweifel/git-auto-commit-action@v7
+      - uses: stefanzweifel/git-auto-commit-action@v7
         with:
-          commit_message: 'chore(ci): auto format + lint fixes'
-          commit_user_name: github-actions[bot]
-          commit_user_email: 41898282+github-actions[bot]@users.noreply.github.com
+          commit_message: 'chore(ci): auto lint + format fixes'
