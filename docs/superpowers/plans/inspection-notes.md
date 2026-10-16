@@ -20,3 +20,12 @@
 - [x] Step 5: Verify
   - 329K	dist
 - [x] Step 6: Commit
+
+## Task 3: Add the missing safety net
+
+- [x] Step 1: Write the failing test
+- [x] tep 2: Install Vitest and confirm the test fails for the right reason
+- [x] Step 3: Add the config and script
+- [x] Step 4: Run it
+- [x] Step 5: Wire CI
+- [x] Step 6: Commit

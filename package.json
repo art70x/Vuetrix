@@ -9,6 +9,7 @@
     "preview": "vite preview",
     "lint": "oxlint . --fix && eslint . --fix --cache",
     "fmt": "oxfmt src/",
+    "test": "vitest run",
     "add": "nlx shadcn-vue add",
     "up": "taze major -I"
   },
@@ -52,7 +53,9 @@
     "vite-plugin-vue-devtools": "^8.2.1",
     "vite-ssg": "28.3.0",
     "vite-ssg-sitemap": "^0.10.0",
+    "vitest": "^5.0.4",
     "vue-tsc": "^3.3.9"
   },
+  "engines": { "node": ">=22" },
   "packageManager": "pnpm@11.20.0"
 }
