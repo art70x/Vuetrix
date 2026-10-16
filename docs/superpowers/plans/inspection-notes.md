@@ -50,3 +50,9 @@
 - [x] Step 1: Write the comparison
 - [x] Step 2: Check every row against the repos before committing
 - [x] Step 3: Link it from the README and commit
+
+## Task 7: Decide the next feature milestone
+
+- [x] Step 1: Pick two items from this list and open a GitHub issue for each
+- [x] Step 2: Record the choice
+- [x] Step 3: Commit

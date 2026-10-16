@@ -16,6 +16,11 @@ See [Why Vuetrix](docs/why-vuetrix.md).
 - Font preloading through fontless
 - Oxlint, Oxfmt, ESLint, and Vitest
 
+## Roadmap
+
+- [ ] Dark-mode theme toggle test and a visible demo of the five shadcn-vue components already in the rep
+- [ ] Lighthouse and bundle-size check in CI
+
 ## Quick Start
 
 ### Prerequisites
