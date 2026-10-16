@@ -3,6 +3,7 @@
 ## Commands
 - `pnpm dev`: dev server on port 3000
 - `pnpm build`: type-check, then static build with vite-ssg
+- `pnpm type-check`: type check
 - `pnpm lint`: Oxlint then ESLint, both with --fix
 - `pnpm fmt`: Oxfmt on `src/`
 - `pnpm test`: Vitest

@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc --build && vite-ssg build",
+    "build": "nr type-check && vite-ssg build",
+    "type-check": "vue-tsc --build",
     "preview": "vite preview",
     "lint": "oxlint . --fix && eslint . --fix --cache",
     "fmt": "oxfmt src/",
