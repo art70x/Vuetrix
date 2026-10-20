@@ -7,9 +7,8 @@ on:
     branches: [main]
   merge_group:
 
-# Cancel in-progress runs on new commits to the same PR
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.sha }}
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 permissions:
@@ -18,10 +17,6 @@ permissions:
 jobs:
   check:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        script: [type-check, test]
 
     steps:
       - uses: actions/checkout@v7
@@ -35,36 +30,11 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
-      - run: pnpm ${{ matrix.script }}
+      - name: Check formatting, lint, and types
+        run: pnpm check
 
-  fix:
-    # Skip merge queue and fork PRs (fork tokens can't push)
-    if: >-
-      github.event_name != 'merge_group' &&
-      (github.event_name != 'pull_request' ||
-      github.event.pull_request.head.repo.full_name == github.repository)
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
+      - name: Test
+        run: pnpm test
 
-    steps:
-      - uses: actions/checkout@v7
-        with:
-          ref: ${{ github.head_ref }}
-
-      - uses: pnpm/action-setup@v6
-
-      - uses: actions/setup-node@v7
-        with:
-          node-version: lts/*
-          cache: pnpm
-
-      - run: pnpm install --frozen-lockfile
-
-      - run: pnpm lint
-
-      - run: pnpm fmt
-
-      - uses: stefanzweifel/git-auto-commit-action@v7
-        with:
-          commit_message: 'chore(ci): auto lint + format fixes'
+      - name: Production build
+        run: pnpm build

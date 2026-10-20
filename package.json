@@ -5,13 +5,15 @@
   "type": "module",
   "scripts": {
     "dev": "vp dev",
-    "build": "nr type-check && vite-ssg build",
-    "type-check": "vue-tsc --build",
+    "build": "pnpm type-check && vite-ssg build",
     "preview": "vp preview",
-    "lint": "vp lint . --fix && vp lint . --fix",
-    "fmt": "vp fmt src/",
+    "check": "vp check",
+    "lint": "vp lint .",
+    "lint:fix": "vp lint . --fix",
+    "fmt": "vp fmt .",
+    "type-check": "vue-tsc --build",
     "test": "vp test run",
-    "add": "nlx shadcn-vue add",
+    "add": "shadcn-vue add",
     "up": "taze major -I",
     "prepare": "vp config"
   },
@@ -30,7 +32,6 @@
     "vue-sonner": "^2.0.9"
   },
   "devDependencies": {
-    "@antfu/ni": "^30.6.0",
     "@iconify-json/ph": "^1.2.2",
     "@tailwindcss/vite": "^4.3.3",
     "@tsconfig/node24": "^24.0.5",
