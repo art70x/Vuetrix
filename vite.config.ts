@@ -1,42 +1,303 @@
-import { fileURLToPath, URL } from 'node:url'
+import { fileURLToPath, URL } from "node:url";
 
-import tailwindcss from '@tailwindcss/vite'
-import { unheadVueComposablesImports } from '@unhead/vue'
-import vue from '@vitejs/plugin-vue'
-import { fontless } from 'fontless'
-import AutoImport from 'unplugin-auto-import/vite'
-import IconsResolver from 'unplugin-icons/resolver'
-import Icons from 'unplugin-icons/vite'
-import Components from 'unplugin-vue-components/vite'
-import { defineConfig } from 'vite'
-import vueDevTools from 'vite-plugin-vue-devtools'
-import generateSitemap from 'vite-ssg-sitemap'
-import { VueRouterAutoImports } from 'vue-router/unplugin'
-import VueRouter from 'vue-router/vite'
+import tailwindcss from "@tailwindcss/vite";
+import { unheadVueComposablesImports } from "@unhead/vue";
+import vue from "@vitejs/plugin-vue";
+import { fontless } from "fontless";
+import AutoImport from "unplugin-auto-import/vite";
+import IconsResolver from "unplugin-icons/resolver";
+import Icons from "unplugin-icons/vite";
+import Components from "unplugin-vue-components/vite";
+import vueDevTools from "vite-plugin-vue-devtools";
+import { defineConfig, lazyPlugins } from "vite-plus";
+import generateSitemap from "vite-ssg-sitemap";
+import { VueRouterAutoImports } from "vue-router/unplugin";
+import VueRouter from "vue-router/vite";
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [
+  staged: {
+    "*": "vp check --fix",
+  },
+  fmt: {},
+  lint: {
+    plugins: ["oxc", "typescript", "unicorn", "vue"],
+    categories: {
+      correctness: "warn",
+    },
+    env: {
+      builtin: true,
+      es2026: true,
+    },
+    ignorePatterns: ["**/dist/**", "**/coverage/**", "**/node_modules/**"],
+    rules: {
+      "vue/no-arrow-functions-in-watch": "error",
+      "vue/no-async-in-computed-properties": "error",
+      "vue/no-computed-properties-in-data": "error",
+      "vue/no-deprecated-data-object-declaration": "error",
+      "vue/no-deprecated-delete-set": "error",
+      "vue/no-deprecated-destroyed-lifecycle": "error",
+      "vue/no-deprecated-events-api": "error",
+      "vue/no-deprecated-model-definition": "error",
+      "vue/no-deprecated-props-default-this": "error",
+      "vue/no-deprecated-vue-config-keycodes": "error",
+      "vue/no-dupe-keys": "error",
+      "vue/no-export-in-script-setup": "error",
+      "vue/no-expose-after-await": "error",
+      "vue/no-lifecycle-after-await": "error",
+      "vue/no-reserved-component-names": "error",
+      "vue/no-reserved-keys": "error",
+      "vue/no-reserved-props": "error",
+      "vue/no-shared-component-data": "error",
+      "vue/no-side-effects-in-computed-properties": "error",
+      "vue/no-watch-after-await": "error",
+      "vue/prefer-import-from-vue": "error",
+      "vue/require-prop-type-constructor": "error",
+      "vue/require-render-return": "error",
+      "vue/require-slots-as-functions": "error",
+      "vue/return-in-computed-property": "error",
+      "vue/return-in-emits-validator": "error",
+      "vue/valid-define-emits": "error",
+      "vue/valid-define-options": "error",
+      "vue/valid-define-props": "error",
+      "vue/valid-next-tick": "error",
+      "no-array-constructor": "error",
+      "no-unused-expressions": "error",
+      "no-unused-vars": "error",
+      "unicorn/catch-error-name": "error",
+      "unicorn/consistent-assert": "error",
+      "unicorn/consistent-date-clone": "error",
+      "unicorn/consistent-empty-array-spread": "error",
+      "unicorn/consistent-existence-index-check": "error",
+      "unicorn/consistent-function-scoping": "error",
+      "unicorn/consistent-template-literal-escape": "error",
+      "unicorn/empty-brace-spaces": "error",
+      "unicorn/error-message": "error",
+      "unicorn/escape-case": "error",
+      "unicorn/explicit-length-check": "error",
+      "unicorn/explicit-timer-delay": "error",
+      "unicorn/filename-case": "error",
+      "unicorn/import-style": "error",
+      "unicorn/max-nested-calls": "error",
+      "unicorn/new-for-builtins": "error",
+      "unicorn/no-abusive-eslint-disable": "off",
+      "unicorn/no-accessor-recursion": "error",
+      "unicorn/no-anonymous-default-export": "error",
+      "unicorn/no-array-callback-reference": "error",
+      "unicorn/no-array-fill-with-reference-type": "error",
+      "unicorn/no-array-method-this-argument": "error",
+      "unicorn/no-array-reduce": "error",
+      "unicorn/no-array-reverse": "error",
+      "unicorn/no-array-sort": "error",
+      "unicorn/no-await-expression-member": "error",
+      "unicorn/no-await-in-promise-methods": "error",
+      "unicorn/no-confusing-array-with": "error",
+      "unicorn/no-console-spaces": "error",
+      "unicorn/no-document-cookie": "error",
+      "unicorn/no-empty-file": "error",
+      "unicorn/no-immediate-mutation": "error",
+      "unicorn/no-instanceof-builtins": "error",
+      "unicorn/no-invalid-fetch-options": "error",
+      "unicorn/no-invalid-remove-event-listener": "error",
+      "unicorn/no-lonely-if": "error",
+      "unicorn/no-magic-array-flat-depth": "error",
+      "unicorn/no-negated-condition": "error",
+      "unicorn/no-negation-in-equality-check": "error",
+      "unicorn/no-nested-ternary": "error",
+      "unicorn/no-new-array": "error",
+      "unicorn/no-new-buffer": "error",
+      "unicorn/no-null": "error",
+      "unicorn/no-object-as-default-parameter": "error",
+      "unicorn/no-process-exit": "error",
+      "unicorn/no-single-promise-in-promise-methods": "error",
+      "unicorn/no-static-only-class": "error",
+      "unicorn/no-thenable": "error",
+      "unicorn/no-this-assignment": "error",
+      "unicorn/no-typeof-undefined": "error",
+      "unicorn/no-unnecessary-array-flat-depth": "error",
+      "unicorn/no-unnecessary-array-splice-count": "error",
+      "unicorn/no-unnecessary-await": "error",
+      "unicorn/no-unnecessary-slice-end": "error",
+      "unicorn/no-unreadable-array-destructuring": "error",
+      "unicorn/no-unreadable-iife": "error",
+      "unicorn/no-useless-collection-argument": "error",
+      "unicorn/no-useless-error-capture-stack-trace": "error",
+      "unicorn/no-useless-fallback-in-spread": "error",
+      "unicorn/no-useless-iterator-to-array": "error",
+      "unicorn/no-useless-length-check": "error",
+      "unicorn/no-useless-promise-resolve-reject": "error",
+      "unicorn/no-useless-spread": "error",
+      "unicorn/no-useless-switch-case": "error",
+      "unicorn/no-useless-undefined": "error",
+      "unicorn/no-zero-fractions": "error",
+      "unicorn/number-literal-case": "error",
+      "unicorn/numeric-separators-style": "error",
+      "unicorn/prefer-add-event-listener": "error",
+      "unicorn/prefer-array-find": "error",
+      "unicorn/prefer-array-flat": "error",
+      "unicorn/prefer-array-flat-map": "error",
+      "unicorn/prefer-array-index-of": "error",
+      "unicorn/prefer-array-some": "error",
+      "unicorn/prefer-at": "error",
+      "unicorn/prefer-bigint-literals": "error",
+      "unicorn/prefer-blob-reading-methods": "error",
+      "unicorn/prefer-class-fields": "error",
+      "unicorn/prefer-classlist-toggle": "error",
+      "unicorn/prefer-code-point": "error",
+      "unicorn/prefer-date-now": "error",
+      "unicorn/prefer-default-parameters": "error",
+      "unicorn/prefer-dom-node-append": "error",
+      "unicorn/prefer-dom-node-remove": "error",
+      "unicorn/prefer-dom-node-text-content": "error",
+      "unicorn/prefer-event-target": "error",
+      "unicorn/prefer-export-from": "error",
+      "unicorn/prefer-global-this": "error",
+      "unicorn/prefer-includes": "error",
+      "unicorn/prefer-keyboard-event-key": "error",
+      "unicorn/prefer-logical-operator-over-ternary": "error",
+      "unicorn/prefer-math-min-max": "error",
+      "unicorn/prefer-math-trunc": "error",
+      "unicorn/prefer-modern-dom-apis": "error",
+      "unicorn/prefer-modern-math-apis": "error",
+      "unicorn/prefer-module": "error",
+      "unicorn/prefer-native-coercion-functions": "error",
+      "unicorn/prefer-negative-index": "error",
+      "unicorn/prefer-node-protocol": "error",
+      "unicorn/prefer-number-coercion": "error",
+      "unicorn/prefer-number-properties": "error",
+      "unicorn/prefer-object-from-entries": "error",
+      "unicorn/prefer-optional-catch-binding": "error",
+      "unicorn/prefer-prototype-methods": "error",
+      "unicorn/prefer-query-selector": "error",
+      "unicorn/prefer-reflect-apply": "error",
+      "unicorn/prefer-regexp-test": "error",
+      "unicorn/prefer-response-static-json": "error",
+      "unicorn/prefer-set-has": "error",
+      "unicorn/prefer-set-size": "error",
+      "unicorn/prefer-single-call": "error",
+      "unicorn/prefer-spread": "error",
+      "unicorn/prefer-string-raw": "error",
+      "unicorn/prefer-string-replace-all": "error",
+      "unicorn/prefer-string-slice": "error",
+      "unicorn/prefer-string-starts-ends-with": "error",
+      "unicorn/prefer-string-trim-start-end": "error",
+      "unicorn/prefer-structured-clone": "error",
+      "unicorn/prefer-ternary": "error",
+      "unicorn/prefer-top-level-await": "error",
+      "unicorn/prefer-type-error": "error",
+      "unicorn/relative-url-style": "error",
+      "unicorn/require-array-join-separator": "error",
+      "unicorn/require-module-attributes": "error",
+      "unicorn/require-module-specifiers": "error",
+      "unicorn/require-number-to-fixed-digits-argument": "error",
+      "unicorn/switch-case-braces": "error",
+      "unicorn/switch-case-break-position": "error",
+      "unicorn/text-encoding-identifier-case": "error",
+      "unicorn/throw-new-error": "error",
+      "typescript/ban-ts-comment": "error",
+      "typescript/no-duplicate-enum-values": "error",
+      "typescript/no-empty-object-type": "error",
+      "typescript/no-explicit-any": "error",
+      "typescript/no-extra-non-null-assertion": "error",
+      "typescript/no-misused-new": "error",
+      "typescript/no-namespace": "error",
+      "typescript/no-non-null-asserted-optional-chain": "error",
+      "typescript/no-require-imports": "error",
+      "typescript/no-this-alias": "error",
+      "typescript/no-unnecessary-type-constraint": "error",
+      "typescript/no-unsafe-declaration-merging": "error",
+      "typescript/no-unsafe-function-type": "error",
+      "typescript/no-wrapper-object-types": "error",
+      "typescript/prefer-as-const": "error",
+      "typescript/prefer-namespace-keyword": "error",
+      "typescript/triple-slash-reference": "error",
+      "vite-plus/prefer-vite-plus-imports": "error",
+    },
+    overrides: [
+      {
+        files: ["**/*.ts", "**/*.tsx", "**/*.mts", "**/*.cts", "**/*.vue"],
+        rules: {
+          "constructor-super": "off",
+          "getter-return": "off",
+          "no-class-assign": "off",
+          "no-const-assign": "off",
+          "no-dupe-class-members": "off",
+          "no-dupe-keys": "off",
+          "no-func-assign": "off",
+          "no-import-assign": "off",
+          "no-new-native-nonconstructor": "off",
+          "no-obj-calls": "off",
+          "no-redeclare": "off",
+          "no-setter-return": "off",
+          "no-this-before-super": "off",
+          "no-undef": "off",
+          "no-unreachable": "off",
+          "no-unsafe-negation": "off",
+          "no-var": "error",
+          "no-with": "off",
+          "prefer-const": "error",
+          "prefer-rest-params": "error",
+          "prefer-spread": "error",
+        },
+      },
+      {
+        files: ["src/**/*.vue"],
+        rules: {
+          "vue/prop-name-casing": ["error", "camelCase"],
+          "vue/define-props-destructuring": "warn",
+        },
+      },
+      {
+        files: ["src/**/*.{ts,vue}"],
+        rules: {
+          complexity: [
+            "warn",
+            {
+              max: 10,
+            },
+          ],
+          "no-nested-ternary": "error",
+          "typescript/consistent-type-assertions": [
+            "error",
+            {
+              assertionStyle: "never",
+            },
+          ],
+        },
+      },
+    ],
+    options: {
+      typeAware: true,
+      typeCheck: true,
+    },
+    jsPlugins: [
+      {
+        name: "vite-plus",
+        specifier: "vite-plus/oxlint-plugin",
+      },
+    ],
+  },
+  plugins: lazyPlugins(() => [
     // https://github.com/unplugin/unplugin-auto-import
     AutoImport({
       include: [/\.[tj]sx?$/, /\.vue$/, /\.vue\?vue/],
       imports: [
-        'vue',
-        'vue-router',
-        '@vueuse/core',
+        "vue",
+        "vue-router",
+        "@vueuse/core",
         VueRouterAutoImports,
         unheadVueComposablesImports,
       ],
-      dts: 'src/auto-imports.d.ts',
-      dirs: ['src/composables', 'src/lib'],
+      dts: "src/auto-imports.d.ts",
+      dirs: ["src/composables", "src/lib"],
       vueTemplate: true,
     }),
 
     // https://github.com/antfu/unplugin-vue-components
     Components({
       include: [/\.vue$/, /\.vue\?vue/],
-      dts: 'src/components.d.ts',
-      resolvers: [IconsResolver({ prefix: 'I' })],
+      dts: "src/components.d.ts",
+      resolvers: [IconsResolver({ prefix: "I" })],
     }),
 
     // https://github.com/unplugin/unplugin-icons
@@ -44,19 +305,19 @@ export default defineConfig({
 
     // https://github.com/vuejs/router
     VueRouter({
-      routesFolder: 'src/pages',
-      dts: 'src/typed-router.d.ts',
+      routesFolder: "src/pages",
+      dts: "src/typed-router.d.ts",
     }),
 
     // https://github.com/unjs/fontaine
     fontless({
-      priority: ['google'],
+      priority: ["google"],
       defaults: {
         preload: true,
-        subsets: ['latin'],
+        subsets: ["latin"],
         fallbacks: {
-          'sans-serif': ['system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'Arial'],
-          monospace: ['JetBrains Mono', 'Fira Code', 'Source Code Pro', 'Menlo', 'Consolas'],
+          "sans-serif": ["system-ui", "-apple-system", "Segoe UI", "Roboto", "Arial"],
+          monospace: ["JetBrains Mono", "Fira Code", "Source Code Pro", "Menlo", "Consolas"],
         },
       },
     }),
@@ -64,17 +325,17 @@ export default defineConfig({
     tailwindcss(),
     vue(),
     vueDevTools(),
-  ],
+  ]),
 
   // https://github.com/antfu/vite-ssg
   ssgOptions: {
-    script: 'async',
-    formatting: 'minify',
+    script: "async",
+    formatting: "minify",
     onFinished() {
       generateSitemap({
-        basePath: 'https://vuetrix.vercel.app',
+        basePath: "https://vuetrix.vercel.app",
         generateRobotsTxt: true,
-      })
+      });
     },
   },
 
@@ -84,7 +345,7 @@ export default defineConfig({
 
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('src', import.meta.url)),
+      "@": fileURLToPath(new URL("src", import.meta.url)),
     },
   },
-})
+});

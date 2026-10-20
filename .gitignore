@@ -38,3 +38,4 @@ __screenshots__/
 *.timestamp-*-*.mjs
 
 *temp*
+.vitest/

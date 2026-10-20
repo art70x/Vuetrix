@@ -1,8 +1,8 @@
-import { fileURLToPath, URL } from 'node:url'
+import { fileURLToPath, URL } from "node:url";
 
-import { defineConfig } from 'vitest/config'
+import { defineConfig } from "vite-plus";
 
 export default defineConfig({
-  resolve: { alias: { '@': fileURLToPath(new URL('src', import.meta.url)) } },
-  test: { environment: 'node' },
-})
+  resolve: { alias: { "@": fileURLToPath(new URL("src", import.meta.url)) } },
+  test: { environment: "node" },
+});
