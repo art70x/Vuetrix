@@ -80,7 +80,7 @@ export default defineConfig({
       "unicorn/import-style": "error",
       "unicorn/max-nested-calls": "error",
       "unicorn/new-for-builtins": "error",
-      "unicorn/no-abusive-eslint-disable": "off",
+      "unicorn/no-abusive-eslint-disable": "error",
       "unicorn/no-accessor-recursion": "error",
       "unicorn/no-anonymous-default-export": "error",
       "unicorn/no-array-callback-reference": "error",
