@@ -1,13 +1,13 @@
 <script lang="ts" setup>
-import { Toaster, type ToasterProps } from 'vue-sonner'
+import { Toaster, type ToasterProps } from "vue-sonner";
 
-import { cn } from '@/lib/utils'
+import { cn } from "@/lib/utils";
 
-import 'vue-sonner/style.css'
+import "vue-sonner/style.css";
 
-const properties = defineProps<ToasterProps>()
+const properties = defineProps<ToasterProps>();
 
-const currentTheme = computed(() => (isDark.value ? 'dark' : 'light'))
+const currentTheme = computed(() => (isDark.value ? "dark" : "light"));
 </script>
 
 <template>

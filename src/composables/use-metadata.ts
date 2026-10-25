@@ -1,5 +1,5 @@
 export function useMetadata() {
-  const appname = 'Vuetrix'
+  const appname = "Vuetrix";
 
-  return { appname }
+  return { appname };
 }

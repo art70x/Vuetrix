@@ -16,7 +16,6 @@ export default defineConfig({
     "eslint/no-console": ["error", { allow: ["warn", "error"] }],
     "unicorn/no-abusive-eslint-disable": "off",
     "unicorn/no-null": "off",
-    'unicorn/no-top-level-side-effects': 'off',
     "unicorn/filename-case": "off",
     "unicorn/no-array-callback-reference": "off",
     "unicorn/no-await-expression-member": "off",

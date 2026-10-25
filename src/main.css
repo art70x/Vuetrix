@@ -1,6 +1,6 @@
-@import 'tailwindcss';
-@import 'tw-animate-css';
-@import 'shadcn-vue/tailwind.css';
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn-vue/tailwind.css";
 
 @variant dark {
   &:where(.dark, .dark *) {
@@ -31,7 +31,7 @@
 }
 
 @utility font-sans {
-  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
 }
 
 /* @utility font-mono {
@@ -49,7 +49,7 @@
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
 
-  --font-sans: 'Inter', sans-serif;
+  --font-sans: "Inter", sans-serif;
   /* --font-mono: 'IBM Plex Mono', sans-serif; */
 
   --color-background: var(--background);

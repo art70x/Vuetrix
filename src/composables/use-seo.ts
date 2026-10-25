@@ -1,13 +1,13 @@
 interface Meta {
-  title: string
-  description?: string
-  shortDescription?: string
-  url?: string
-  author?: string
+  title: string;
+  description?: string;
+  shortDescription?: string;
+  url?: string;
+  author?: string;
 }
 
 export function useSeo(meta: Meta) {
-  const ogDesc = meta?.shortDescription || meta?.description
+  const ogDesc = meta?.shortDescription || meta?.description;
 
   const m = meta && {
     title: meta.title,
@@ -17,11 +17,11 @@ export function useSeo(meta: Meta) {
     ogDescription: ogDesc,
     twitterDescription: ogDesc,
     ogUrl: meta.url,
-  }
+  };
 
-  useSeoMeta({ ...m })
+  useSeoMeta({ ...m });
 
   useHead({
-    link: [{ rel: 'canonical', href: meta?.url }],
-  })
+    link: [{ rel: "canonical", href: meta?.url }],
+  });
 }

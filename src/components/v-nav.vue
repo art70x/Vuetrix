@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import { toast } from 'vue-sonner'
+import { toast } from "vue-sonner";
 
-import { toggleDark } from '@/lib/theme'
+import { toggleDark } from "@/lib/theme";
 
-const { appname } = useMetadata()
-const currentTheme = isDark ? 'dark' : 'light'
+const { appname } = useMetadata();
+const currentTheme = isDark ? "dark" : "light";
 
 const toggleTheme = () => {
-  toggleDark()
-  toast('Theme', { description: `Theme changed to ${currentTheme} mode` })
-}
+  toggleDark();
+  toast("Theme", { description: `Theme changed to ${currentTheme} mode` });
+};
 </script>
 
 <template>

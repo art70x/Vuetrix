@@ -1,11 +1,11 @@
 {
   "name": "vuetrix",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "vp dev",
-    "build": "pnpm type-check && vite-ssg build",
+    "build": "vpr type-check && vite-ssg build",
     "preview": "vp preview",
     "check": "vp check",
     "lint": "vp lint .",
