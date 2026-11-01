@@ -1,15 +1,18 @@
 <template>
-  <div class="flex min-h-screen flex-col">
+  <div class="flex min-h-dvh flex-col">
     <a
-      class="sr-only hover:underline focus-visible:not-sr-only focus-visible:absolute focus-visible:top-2 focus-visible:left-2 focus-visible:z-50 focus-visible:bg-foreground focus-visible:px-4 focus-visible:py-3 focus-visible:text-background"
-      href="#content"
+      href="#main"
+      class="sr-only focus-visible:not-sr-only focus-visible:absolute focus-visible:left-2 focus-visible:top-2 focus-visible:z-50 focus-visible:bg-foreground focus-visible:px-4 focus-visible:py-3 focus-visible:text-background focus-visible:underline"
     >
       Skip to main content
     </a>
+
     <VNav />
-    <main id="content" tabindex="-1" class="flex-1">
+
+    <main id="main" tabindex="-1" class="flex-1 outline-none">
       <slot />
     </main>
-    <VFoot />
+
+    <VFooter />
   </div>
 </template>

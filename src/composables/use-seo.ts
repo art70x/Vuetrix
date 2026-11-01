@@ -1,27 +1,63 @@
-interface Meta {
+import { useHead, useSeoMeta } from "@unhead/vue";
+
+import { SITE } from "@/lib/site";
+
+export interface Meta {
   title: string;
   description?: string;
   shortDescription?: string;
   url?: string;
   author?: string;
+  path?: string;
 }
 
-export function useSeo(meta: Meta) {
-  const ogDesc = meta?.shortDescription || meta?.description;
+/**
+ * Resolve a relative path or absolute URL against the original site URL.
+ */
+function getCanonicalUrl(meta: Meta): string | undefined {
+  const target = meta.url || meta.path;
 
-  const m = meta && {
+  if (!target) return undefined;
+
+  try {
+    const baseUrl = SITE.originalSite.endsWith("/") ? SITE.originalSite : `${SITE.originalSite}/`;
+
+    return new URL(target, baseUrl).href;
+  } catch {
+    return undefined;
+  }
+}
+
+/**
+ * Main SEO composable.
+ */
+export function useSeo(meta: Meta) {
+  const canonicalUrl = getCanonicalUrl(meta);
+  const socialDescription = meta.shortDescription || meta.description;
+
+  useSeoMeta({
     title: meta.title,
     description: meta.description,
-    ogTitle: meta.title,
-    twitterTitle: meta.title,
-    ogDescription: ogDesc,
-    twitterDescription: ogDesc,
-    ogUrl: meta.url,
-  };
+    author: meta.author,
 
-  useSeoMeta({ ...m });
+    ogTitle: meta.title,
+    ogDescription: socialDescription,
+    ogUrl: canonicalUrl,
+    ogType: "website",
+
+    twitterTitle: meta.title,
+    twitterDescription: socialDescription,
+    twitterCard: "summary",
+  });
 
   useHead({
-    link: [{ rel: "canonical", href: meta?.url }],
+    link: canonicalUrl
+      ? [
+          {
+            rel: "canonical",
+            href: canonicalUrl,
+          },
+        ]
+      : [],
   });
 }

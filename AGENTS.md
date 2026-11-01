@@ -1,51 +1,69 @@
 # Vuetrix: working notes
 
-## Commands
+Project-specific guidance for contributors and coding agents. Treat `package.json`, `vite.config.ts`, and the source tree as the source of truth when these notes and the implementation disagree.
 
-- `pnpm dev`: dev server on port 3000
-- `pnpm build`: type-check, then static build with vite-ssg
-- `pnpm type-check`: type check
-- `pnpm lint`: Oxlint then ESLint, both with --fix
-- `pnpm fmt`: Oxfmt on `src/`
-- `pnpm test`: Vitest
-- `pnpm add`: not valid. Use `shadcn-vue add <component>` via the `add` script.
+## Project commands
 
-## Conventions
+Run commands from the repository root.
 
-- Pages live in `src/pages` and become routes automatically (unplugin-vue-router).
-- Vue, vue-router, and VueUse APIs are auto-imported. Do not add manual imports for them.
-- Components in `src/components` are auto-registered. Icons use the `I` prefix (Phosphor set).
-- shadcn-vue components are generated into the repo. Edit them freely, do not re-run `add` over edits.
-- Oxlint and ESLint overlap on purpose: `eslint-plugin-oxlint` turns off duplicated rules. Do not remove one tool without checking the other.
+| Command                    | Purpose                                                                      |
+| -------------------------- | ---------------------------------------------------------------------------- |
+| `pnpm dev`                 | Start the Vite+ development server on port `3000`                            |
+| `pnpm build`               | Run the configured type-check step, then build the static site with vite-ssg |
+| `pnpm preview`             | Preview the production build using Vite+                                     |
+| `pnpm check`               | Run the Vite+ check command                                                  |
+| `pnpm type-check`          | Run `vue-tsc --build`                                                        |
+| `pnpm lint`                | Run Oxlint through Vite+ (`vp lint .`)                                       |
+| `pnpm lint:fix`            | Run Oxlint with `--fix` through Vite+                                        |
+| `pnpm fmt`                 | Format the project with Oxfmt through Vite+ (`vp fmt .`)                     |
+| `pnpm test`                | Run the Vitest suite through Vite+ (`vp test run`)                           |
+| `pnpm run add <component>` | Run the shadcn-vue CLI to add a component, for example `pnpm run add button` |
+| `pnpm up`                  | Run Taze's major-version update workflow (`taze major -I`)                   |
 
-## Before you commit
+Use `pnpm run add <component>` for the project's `add` script. Do not use `pnpm add <component>` for this purpose: `pnpm add` is pnpm's dependency-installation command, not the project script.
 
-Run `pnpm build && pnpm lint && pnpm test`. All three must pass.
+The project requires Node.js `>=22` and declares `pnpm@12.16.1` as its package manager. Use the declared package-manager version when possible.
 
-<!--VITE PLUS START-->
+## Project conventions
 
-# Using Vite+, the Unified Toolchain for the Web
+- Pages live in `src/pages/` and are converted into routes by the Vue Router Vite plugin. Follow the existing file-based routing conventions.
+- The `@` alias points to `src/`.
+- Vue, Vue Router, VueUse, Vue Router auto-imports, and Unhead Vue composables are configured for auto-import. Composables and utilities in the configured `src/composables/` and `src/lib/` directories are also auto-imported. Check generated declarations before adding redundant imports.
+- Components in `src/components/` are auto-registered by `unplugin-vue-components`.
+- Import Tabler icon components from `@tabler/icons-vue` using the package's actual exported component names. Do not use the old Phosphor `I`-prefix convention or assume the removed Iconify/unplugin-icons setup is present.
+- Font files are provided by the Fontsource variable packages for Inter, JetBrains Mono, and Space Grotesk. Keep font imports and font-family declarations consistent with `src/css/fonts.css` and `src/css/main.css`.
+- Tailwind CSS 4 is integrated through `@tailwindcss/vite`.
+- shadcn-vue components are generated into the repository. They are project source: edit them when needed, and review generated changes before running the add command against an already-customized component.
+- Use Oxlint for linting and Oxfmt for formatting. ESLint is not part of the current dependency setup; do not add ESLint-specific instructions or assume ESLint rules/plugins are active.
+- Keep documentation, examples, and feature descriptions aligned with the installed dependencies and actual implementation. Do not advertise removed tools such as Phosphor Icons, Fontless, Iconify JSON, or `unplugin-icons`.
 
-This project is using Vite+, a unified toolchain built on top of Vite, Rolldown, Vitest, tsdown, Oxlint, Oxfmt, and Vite Task. Vite+ wraps runtime management, package management, and frontend tooling in a single global CLI called `vp`. Vite+ is distinct from Vite, and it invokes Vite through `vp dev` and `vp build`. Run `vp help` to print a list of commands and `vp <command> --help` for information about a specific command.
+## Validation before committing
 
-Docs are local at `node_modules/vite-plus/docs` or online at https://viteplus.dev/guide/.
+Run the checks relevant to the change. For a full project validation, use:
 
-## Built-in Commands vs Scripts
+```sh
+pnpm type-check
+pnpm lint
+pnpm fmt
+pnpm test
+pnpm build
+```
 
-`vp <name>` runs a built-in command. `vp run <name>` runs a `package.json` script or a `vite.config.ts` task. Scripts cannot overwrite built-ins, so `vp dev` and `vp run dev` may do different things. Check `package.json` and `vite.config.ts` first, and run `vp run <name>` when the project defines a script or task with that name.
+Formatting may modify files, so inspect the resulting diff before committing. If you change routing, SSG, or Vite configuration, verify the generated production output as well as the development server.
 
-## Tool Versions
+## Vite+ notes
 
-Run `vp toolchain` to show versions and relationships in the active Vite+
-release. Add a tool name to select part of the graph. For example, run
-`vp toolchain vite`. Use `--global` to ignore the local `vite-plus` package. Use
-`vp why <package>` to show the package-manager dependency graph.
+This project uses Vite+ (`vite-plus`) as its unified frontend toolchain. The project scripts call the local Vite+ CLI (`vp`) for development, preview, checking, linting, formatting, and tests. The production build script also invokes the configured type-check and vite-ssg build commands.
 
-## Review Checklist
+Vite+ has built-in commands as well as commands for running project scripts. When using `vp` directly, distinguish a built-in command such as `vp dev` from a package script; use `vp run <script>` when you specifically need to execute a `package.json` script through Vite+.
 
-- [ ] Run `vp install` after pulling remote changes and before getting started.
-- [ ] Run `vp check` and `vp test` to format, lint, type check and test changes.
-- [ ] Check if there are `vite.config.ts` tasks or `package.json` scripts necessary for validation, run via `vp run <script>`.
-- [ ] If setup, runtime, or package-manager behavior looks wrong, run `vp env doctor` and include its output when asking for help.
+Useful diagnostics:
 
-<!--VITE PLUS END-->
+```sh
+vp help
+vp toolchain
+vp why <package>
+vp env doctor
+```
+
+Vite+ documentation: https://viteplus.dev/guide/

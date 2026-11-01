@@ -1,10 +1,24 @@
 <!doctype html>
-<html lang="">
+<html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vuetrix</title>
+    <meta name="theme-color" content="#0b0f14" />
+    <meta
+      name="description"
+      content="Vuetrix — the Vue 3 starter with TypeScript, Tailwind CSS and shadcn-vue already configured."
+    />
+    <title>Vuetrix — Vue 3 starter</title>
+    <script>
+      try {
+        const t = localStorage.getItem("vuetrix-theme") || "dark";
+        document.documentElement.classList.toggle(
+          "dark",
+          t === "dark" || (t === "system" && matchMedia("(prefers-color-scheme: dark)").matches),
+        );
+      } catch (e) {}
+    </script>
   </head>
   <body>
     <div id="app"></div>
