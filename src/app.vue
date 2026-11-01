@@ -28,9 +28,16 @@ useHead({
 
 <template>
   <div>
+    <VCommandPalette />
     <VToaster />
     <VLayout>
-      <RouterView />
+      <RouterView v-slot="{ Component }">
+        <Suspense>
+          <component :is="Component" /><template #fallback>
+            <div class="container-app py-20 text-muted-foreground">Loading page…</div>
+          </template>
+        </Suspense>
+      </RouterView>
     </VLayout>
   </div>
 </template>

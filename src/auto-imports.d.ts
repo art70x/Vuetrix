@@ -8,10 +8,30 @@
 // biome-ignore lint: disable
 export {};
 declare global {
+  const ACCENTS: typeof import("./composables/use-appearance").ACCENTS;
+  const CLONE_COMMAND: typeof import("./lib/data").CLONE_COMMAND;
+  const CODE_SAMPLES: typeof import("./lib/data").CODE_SAMPLES;
+  const COMPARISON: typeof import("./lib/data").COMPARISON;
+  const DOCS_SECTIONS: typeof import("./lib/data").DOCS_SECTIONS;
   const EffectScope: typeof import("vue").EffectScope;
+  const FAQS: typeof import("./lib/data").FAQS;
+  const FEATURES: typeof import("./lib/data").FEATURES;
+  const FEATURE_GROUPS: typeof import("./lib/data").FEATURE_GROUPS;
+  const INSTALL_COMMANDS: typeof import("./lib/data").INSTALL_COMMANDS;
+  const MAIN_NAV: typeof import("./lib/site").MAIN_NAV;
+  const PROJECT_TREE: typeof import("./lib/data").PROJECT_TREE;
+  const RADIUS_OPTIONS: typeof import("./composables/use-appearance").RADIUS_OPTIONS;
+  const ROADMAP: typeof import("./lib/data").ROADMAP;
+  const SCRIPTS: typeof import("./lib/data").SCRIPTS;
+  const SHOWCASE_ITEMS: typeof import("./lib/data").SHOWCASE_ITEMS;
+  const SITE: typeof import("./lib/site").SITE;
+  const STACK: typeof import("./lib/data").STACK;
+  const accent: typeof import("./composables/use-appearance").accent;
+  const addSeo: typeof import("./composables/use-seo").addSeo;
   const asyncComputed: typeof import("@vueuse/core").asyncComputed;
   const autoResetRef: typeof import("@vueuse/core").autoResetRef;
   const cn: typeof import("./lib/utils").cn;
+  const commandOpen: typeof import("./composables/use-command").commandOpen;
   const computed: typeof import("vue").computed;
   const computedAsync: typeof import("@vueuse/core").computedAsync;
   const computedEager: typeof import("@vueuse/core").computedEager;
@@ -82,6 +102,7 @@ declare global {
   const preferredDark: typeof import("./lib/theme").preferredDark;
   const provide: typeof import("vue").provide;
   const provideLocal: typeof import("@vueuse/core").provideLocal;
+  const radius: typeof import("./composables/use-appearance").radius;
   const reactify: typeof import("@vueuse/core").reactify;
   const reactifyObject: typeof import("@vueuse/core").reactifyObject;
   const reactive: typeof import("vue").reactive;
@@ -96,12 +117,15 @@ declare global {
   const refManualReset: typeof import("@vueuse/core").refManualReset;
   const refThrottled: typeof import("@vueuse/core").refThrottled;
   const refWithControl: typeof import("@vueuse/core").refWithControl;
+  const resetAppearance: typeof import("./composables/use-appearance").resetAppearance;
   const resolveComponent: typeof import("vue").resolveComponent;
+  const resolvedTheme: typeof import("./composables/use-appearance").resolvedTheme;
   const shallowReactive: typeof import("vue").shallowReactive;
   const shallowReadonly: typeof import("vue").shallowReadonly;
   const shallowRef: typeof import("vue").shallowRef;
   const syncRef: typeof import("@vueuse/core").syncRef;
   const syncRefs: typeof import("@vueuse/core").syncRefs;
+  const theme: typeof import("./composables/use-appearance").theme;
   const throttledRef: typeof import("@vueuse/core").throttledRef;
   const throttledWatch: typeof import("@vueuse/core").throttledWatch;
   const toRaw: typeof import("vue").toRaw;
@@ -148,6 +172,7 @@ declare global {
   const useCloned: typeof import("@vueuse/core").useCloned;
   const useColorMode: typeof import("@vueuse/core").useColorMode;
   const useConfirmDialog: typeof import("@vueuse/core").useConfirmDialog;
+  const useCopy: typeof import("./composables/use-copy").useCopy;
   const useCountdown: typeof import("@vueuse/core").useCountdown;
   const useCounter: typeof import("@vueuse/core").useCounter;
   const useCssModule: typeof import("vue").useCssModule;
@@ -337,6 +362,22 @@ declare global {
     WritableComputedRef,
   } from "vue";
   import("vue");
+  // @ts-ignore
+  export type {
+    RouteNamedMap,
+    _RouteFileInfoMap,
+    _RouteNamesForFilePath,
+  } from "./composables/typed-router.d";
+  import("./composables/typed-router.d");
+  // @ts-ignore
+  export type { Theme, Accent } from "./composables/use-appearance";
+  import("./composables/use-appearance");
+  // @ts-ignore
+  export type { Meta } from "./composables/use-seo";
+  import("./composables/use-seo");
+  // @ts-ignore
+  export type { Feature, ScriptRow, ComparisonRow, ShowcaseItem } from "./lib/data";
+  import("./lib/data");
 }
 
 // for vue template auto import
@@ -344,10 +385,31 @@ import { UnwrapRef } from "vue";
 declare module "vue" {
   interface GlobalComponents {}
   interface ComponentCustomProperties {
+    readonly ACCENTS: UnwrapRef<(typeof import("./composables/use-appearance"))["ACCENTS"]>;
+    readonly CLONE_COMMAND: UnwrapRef<(typeof import("./lib/data"))["CLONE_COMMAND"]>;
+    readonly CODE_SAMPLES: UnwrapRef<(typeof import("./lib/data"))["CODE_SAMPLES"]>;
+    readonly COMPARISON: UnwrapRef<(typeof import("./lib/data"))["COMPARISON"]>;
+    readonly DOCS_SECTIONS: UnwrapRef<(typeof import("./lib/data"))["DOCS_SECTIONS"]>;
     readonly EffectScope: UnwrapRef<(typeof import("vue"))["EffectScope"]>;
+    readonly FAQS: UnwrapRef<(typeof import("./lib/data"))["FAQS"]>;
+    readonly FEATURES: UnwrapRef<(typeof import("./lib/data"))["FEATURES"]>;
+    readonly FEATURE_GROUPS: UnwrapRef<(typeof import("./lib/data"))["FEATURE_GROUPS"]>;
+    readonly INSTALL_COMMANDS: UnwrapRef<(typeof import("./lib/data"))["INSTALL_COMMANDS"]>;
+    readonly MAIN_NAV: UnwrapRef<(typeof import("./lib/site"))["MAIN_NAV"]>;
+    readonly PROJECT_TREE: UnwrapRef<(typeof import("./lib/data"))["PROJECT_TREE"]>;
+    readonly RADIUS_OPTIONS: UnwrapRef<
+      (typeof import("./composables/use-appearance"))["RADIUS_OPTIONS"]
+    >;
+    readonly ROADMAP: UnwrapRef<(typeof import("./lib/data"))["ROADMAP"]>;
+    readonly SCRIPTS: UnwrapRef<(typeof import("./lib/data"))["SCRIPTS"]>;
+    readonly SHOWCASE_ITEMS: UnwrapRef<(typeof import("./lib/data"))["SHOWCASE_ITEMS"]>;
+    readonly SITE: UnwrapRef<(typeof import("./lib/site"))["SITE"]>;
+    readonly STACK: UnwrapRef<(typeof import("./lib/data"))["STACK"]>;
+    readonly accent: UnwrapRef<(typeof import("./composables/use-appearance"))["accent"]>;
     readonly asyncComputed: UnwrapRef<(typeof import("@vueuse/core"))["asyncComputed"]>;
     readonly autoResetRef: UnwrapRef<(typeof import("@vueuse/core"))["autoResetRef"]>;
     readonly cn: UnwrapRef<(typeof import("./lib/utils"))["cn"]>;
+    readonly commandOpen: UnwrapRef<(typeof import("./composables/use-command"))["commandOpen"]>;
     readonly computed: UnwrapRef<(typeof import("vue"))["computed"]>;
     readonly computedAsync: UnwrapRef<(typeof import("@vueuse/core"))["computedAsync"]>;
     readonly computedEager: UnwrapRef<(typeof import("@vueuse/core"))["computedEager"]>;
@@ -428,6 +490,7 @@ declare module "vue" {
     readonly preferredDark: UnwrapRef<(typeof import("./lib/theme"))["preferredDark"]>;
     readonly provide: UnwrapRef<(typeof import("vue"))["provide"]>;
     readonly provideLocal: UnwrapRef<(typeof import("@vueuse/core"))["provideLocal"]>;
+    readonly radius: UnwrapRef<(typeof import("./composables/use-appearance"))["radius"]>;
     readonly reactify: UnwrapRef<(typeof import("@vueuse/core"))["reactify"]>;
     readonly reactifyObject: UnwrapRef<(typeof import("@vueuse/core"))["reactifyObject"]>;
     readonly reactive: UnwrapRef<(typeof import("vue"))["reactive"]>;
@@ -442,12 +505,19 @@ declare module "vue" {
     readonly refManualReset: UnwrapRef<(typeof import("@vueuse/core"))["refManualReset"]>;
     readonly refThrottled: UnwrapRef<(typeof import("@vueuse/core"))["refThrottled"]>;
     readonly refWithControl: UnwrapRef<(typeof import("@vueuse/core"))["refWithControl"]>;
+    readonly resetAppearance: UnwrapRef<
+      (typeof import("./composables/use-appearance"))["resetAppearance"]
+    >;
     readonly resolveComponent: UnwrapRef<(typeof import("vue"))["resolveComponent"]>;
+    readonly resolvedTheme: UnwrapRef<
+      (typeof import("./composables/use-appearance"))["resolvedTheme"]
+    >;
     readonly shallowReactive: UnwrapRef<(typeof import("vue"))["shallowReactive"]>;
     readonly shallowReadonly: UnwrapRef<(typeof import("vue"))["shallowReadonly"]>;
     readonly shallowRef: UnwrapRef<(typeof import("vue"))["shallowRef"]>;
     readonly syncRef: UnwrapRef<(typeof import("@vueuse/core"))["syncRef"]>;
     readonly syncRefs: UnwrapRef<(typeof import("@vueuse/core"))["syncRefs"]>;
+    readonly theme: UnwrapRef<(typeof import("./composables/use-appearance"))["theme"]>;
     readonly throttledRef: UnwrapRef<(typeof import("@vueuse/core"))["throttledRef"]>;
     readonly throttledWatch: UnwrapRef<(typeof import("@vueuse/core"))["throttledWatch"]>;
     readonly toRaw: UnwrapRef<(typeof import("vue"))["toRaw"]>;
@@ -494,6 +564,7 @@ declare module "vue" {
     readonly useCloned: UnwrapRef<(typeof import("@vueuse/core"))["useCloned"]>;
     readonly useColorMode: UnwrapRef<(typeof import("@vueuse/core"))["useColorMode"]>;
     readonly useConfirmDialog: UnwrapRef<(typeof import("@vueuse/core"))["useConfirmDialog"]>;
+    readonly useCopy: UnwrapRef<(typeof import("./composables/use-copy"))["useCopy"]>;
     readonly useCountdown: UnwrapRef<(typeof import("@vueuse/core"))["useCountdown"]>;
     readonly useCounter: UnwrapRef<(typeof import("@vueuse/core"))["useCounter"]>;
     readonly useCssModule: UnwrapRef<(typeof import("vue"))["useCssModule"]>;

@@ -5,12 +5,12 @@
   "typescript": true,
   "tailwind": {
     "config": "",
-    "css": "src/main.css",
-    "baseColor": "neutral",
+    "css": "src/css/main.css",
+    "baseColor": "mist",
     "cssVariables": true,
     "prefix": ""
   },
-  "iconLibrary": "phosphor",
+  "iconLibrary": "tabler",
   "rtl": false,
   "pointer": false,
   "aliases": {
@@ -20,7 +20,8 @@
     "lib": "@/lib",
     "composables": "@/composables"
   },
-  "menuColor": "default",
+  "fontHeading": "space-grotesk",
+  "menuColor": "default-translucent",
   "menuAccent": "subtle",
   "registries": {}
 }

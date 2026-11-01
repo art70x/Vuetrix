@@ -1,53 +1,163 @@
 <script setup lang="ts">
-import { toast } from "vue-sonner";
+import { ref, watch } from "vue";
+import { RouterLink, useRoute } from "vue-router";
+import { IconBrandGithub, IconMenu2, IconMoon, IconSearch, IconSun } from "@tabler/icons-vue";
 
-import { toggleDark } from "@/lib/theme";
+import { Button, buttonVariants } from "@/components/ui/button";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
-const { appname } = useMetadata();
-const currentTheme = isDark ? "dark" : "light";
+import { commandOpen } from "@/composables/use-command";
+import { theme } from "@/composables/use-appearance";
+import { MAIN_NAV, SITE } from "@/lib/site";
 
-const toggleTheme = () => {
-  toggleDark();
-  toast("Theme", { description: `Theme changed to ${currentTheme} mode` });
-};
+const mobileOpen = ref(false);
+const route = useRoute();
+
+watch(
+  () => route.fullPath,
+  () => {
+    mobileOpen.value = false;
+  },
+);
+
+function toggleTheme() {
+  theme.value = theme.value === "dark" ? "light" : "dark";
+}
+
+function openSearch() {
+  commandOpen.value = true;
+  mobileOpen.value = false;
+}
 </script>
 
 <template>
-  <nav class="sticky border border-muted bg-background shadow-sm">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="flex h-16 justify-between">
-        <!-- Left -->
-        <div class="flex items-center space-x-8">
-          <h2 class="text-xl font-bold text-foreground">{{ appname }}</h2>
+  <header class="sticky top-0 z-40 border-b bg-background/80 backdrop-blur-md">
+    <div class="container-app flex h-16 items-center justify-between gap-4">
+      <!-- Logo -->
+      <RouterLink to="/" aria-label="Vuetrix home">
+        <VLogo />
+      </RouterLink>
 
-          <div class="hidden items-center space-x-8 md:flex">
-            <RouterLink to="/" class="lnk"> Home </RouterLink>
-            <RouterLink to="/about" class="lnk"> About </RouterLink>
-            <a href="#features" class="lnk"> Features </a>
-          </div>
-        </div>
+      <!-- Desktop navigation -->
+      <nav aria-label="Primary navigation" class="hidden items-center gap-1 lg:flex">
+        <RouterLink
+          v-for="item in MAIN_NAV"
+          :key="item.to"
+          :to="item.to"
+          class="rounded-md px-3 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+          active-class="bg-accent text-accent-foreground"
+        >
+          {{ item.label }}
+        </RouterLink>
+      </nav>
 
-        <!-- Right -->
-        <div class="flex items-center gap-4">
-          <Button @click="toggleTheme()" variant="outline" size="icon-sm">
-            <IPhMoon
-              class="size-5 scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90"
-            />
-            <IPhSun
-              class="absolute size-5 scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0"
-            />
-            <span class="sr-only">Toggle theme</span>
-          </Button>
-        </div>
+      <!-- Actions -->
+      <div class="flex items-center gap-2">
+        <!-- Search -->
+        <Button
+          variant="outline"
+          class="hidden h-9 w-56 justify-start gap-2 px-3 font-normal text-muted-foreground sm:inline-flex"
+          aria-keyshortcuts="Control+K Meta+K"
+          @click="openSearch"
+        >
+          <IconSearch class="size-4" aria-hidden="true" />
+          Search documentation
+
+          <kbd class="ml-auto rounded border px-1.5 py-0.5 font-mono text-[10px]"> Ctrl K </kbd>
+        </Button>
+
+        <!-- GitHub -->
+        <a
+          :href="SITE.repo"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Vuetrix on GitHub"
+          :class="buttonVariants({ variant: 'outline', size: 'icon' })"
+          class="size-9 min-h-9"
+        >
+          <IconBrandGithub class="size-4" aria-hidden="true" />
+        </a>
+
+        <!-- Theme -->
+        <Button
+          variant="outline"
+          size="icon"
+          class="size-9 min-h-9"
+          aria-label="Toggle color theme"
+          @click="toggleTheme"
+        >
+          <IconSun class="size-4 dark:hidden" aria-hidden="true" />
+          <IconMoon class="hidden size-4 dark:block" aria-hidden="true" />
+        </Button>
+
+        <!-- Mobile navigation -->
+        <Sheet v-model:open="mobileOpen">
+          <SheetTrigger as-child>
+            <Button
+              variant="outline"
+              size="icon"
+              class="size-9 min-h-9 lg:hidden"
+              aria-label="Open navigation menu"
+            >
+              <IconMenu2 class="size-4" aria-hidden="true" />
+            </Button>
+          </SheetTrigger>
+
+          <SheetContent side="right" class="flex w-72 flex-col">
+            <SheetHeader>
+              <SheetTitle>Navigation</SheetTitle>
+              <SheetDescription> Explore the Vuetrix starter. </SheetDescription>
+            </SheetHeader>
+
+            <nav aria-label="Mobile navigation" class="flex flex-col gap-1 px-4">
+              <RouterLink
+                v-for="item in MAIN_NAV"
+                :key="item.to"
+                :to="item.to"
+                class="rounded-md px-3 py-3 text-sm font-medium text-muted-foreground hover:bg-muted"
+                active-class="bg-accent text-accent-foreground"
+              >
+                {{ item.label }}
+              </RouterLink>
+
+              <Button
+                variant="ghost"
+                class="mt-3 h-auto justify-start gap-3 px-3 py-3 font-normal text-muted-foreground"
+                aria-keyshortcuts="Control+K Meta+K"
+                @click="openSearch"
+              >
+                <IconSearch class="size-4" aria-hidden="true" />
+                Search documentation
+
+                <kbd class="ml-auto rounded border px-1.5 py-0.5 font-mono text-[10px]">
+                  Ctrl K
+                </kbd>
+              </Button>
+            </nav>
+
+            <!-- Mobile GitHub link -->
+            <div class="mt-auto p-4">
+              <a
+                :href="SITE.repo"
+                target="_blank"
+                rel="noopener noreferrer"
+                :class="buttonVariants({ variant: 'outline' })"
+                class="w-full gap-2"
+              >
+                <IconBrandGithub class="size-4" aria-hidden="true" />
+                View source on GitHub
+              </a>
+            </div>
+          </SheetContent>
+        </Sheet>
       </div>
     </div>
-  </nav>
+  </header>
 </template>
-
-<style scoped>
-@reference "@/main.css";
-
-.lnk {
-  @apply text-sm font-medium text-muted-foreground transition-colors hover:text-foreground/80;
-}
-</style>

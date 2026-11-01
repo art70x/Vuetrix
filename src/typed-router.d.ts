@@ -44,6 +44,28 @@ declare module "vue-router/auto-routes" {
       Record<never, never>,
       never
     >;
+    "/docs": RouteRecordInfo<"/docs", "/docs", Record<never, never>, Record<never, never>, never>;
+    "/features": RouteRecordInfo<
+      "/features",
+      "/features",
+      Record<never, never>,
+      Record<never, never>,
+      never
+    >;
+    "/playground": RouteRecordInfo<
+      "/playground",
+      "/playground",
+      Record<never, never>,
+      Record<never, never>,
+      never
+    >;
+    "/showcase": RouteRecordInfo<
+      "/showcase",
+      "/showcase",
+      Record<never, never>,
+      Record<never, never>,
+      never
+    >;
   }
 
   /**
@@ -69,6 +91,26 @@ declare module "vue-router/auto-routes" {
     };
     "src/pages/about.vue": {
       routes: "/about";
+      views: never;
+      pathParamNames: never;
+    };
+    "src/pages/docs.vue": {
+      routes: "/docs";
+      views: never;
+      pathParamNames: never;
+    };
+    "src/pages/features.vue": {
+      routes: "/features";
+      views: never;
+      pathParamNames: never;
+    };
+    "src/pages/playground.vue": {
+      routes: "/playground";
+      views: never;
+      pathParamNames: never;
+    };
+    "src/pages/showcase.vue": {
+      routes: "/showcase";
       views: never;
       pathParamNames: never;
     };

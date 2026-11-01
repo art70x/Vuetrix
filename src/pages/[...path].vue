@@ -1,18 +1,28 @@
+<script setup lang="ts">
+import { buttonVariants } from "@/components/ui/button";
+</script>
+
 <template>
-  <div class="flex min-h-dvh flex-col bg-background">
-    <div class="text-foreground lg:mx-10 lg:border-x">
-      <div class="flex h-[calc(100vh-4.01rem)] items-center justify-center border-x">
-        <div
-          class="flex flex-auto flex-col items-center justify-center px-4 text-center sm:flex-row"
-        >
-          <h1
-            class="text-2xl font-extrabold tracking-tight sm:mr-6 sm:border-r sm:pr-6 sm:text-3xl"
-          >
-            404
-          </h1>
-          <h2 class="mt-2 text-muted-foreground sm:mt-0">This page could not be found.</h2>
-        </div>
-      </div>
+  <main
+    class="container-app flex min-h-[60dvh] flex-col items-center justify-center gap-5 py-20 text-center"
+  >
+    <!-- ERROR CODE -->
+    <span class="font-mono text-sm font-medium text-brand" aria-label="Error 404"> 404 </span>
+
+    <!-- ERROR MESSAGE -->
+    <h1 class="font-display text-4xl font-semibold">This route hasn’t been generated</h1>
+
+    <p class="max-w-md text-muted-foreground">
+      The page you’re looking for doesn’t exist. Head home or browse the documentation.
+    </p>
+
+    <!-- NAVIGATION ACTIONS -->
+    <div class="flex flex-wrap justify-center gap-3">
+      <RouterLink to="/" :class="buttonVariants()"> Back home </RouterLink>
+
+      <RouterLink to="/docs" :class="buttonVariants({ variant: 'outline' })">
+        Read the docs
+      </RouterLink>
     </div>
-  </div>
+  </main>
 </template>

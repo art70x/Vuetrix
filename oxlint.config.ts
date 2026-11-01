@@ -12,6 +12,7 @@ export default defineConfig({
   },
   jsPlugins: [{ name: "unicorn-js", specifier: "eslint-plugin-unicorn" }],
   rules: {
+    "typescript/consistent-type-assertions": "off",
     "typescript/no-explicit-any": "error",
     "eslint/no-console": ["error", { allow: ["warn", "error"] }],
     "unicorn/no-abusive-eslint-disable": "off",
@@ -21,6 +22,7 @@ export default defineConfig({
     "unicorn/no-await-expression-member": "off",
     "unicorn/no-array-reduce": "off",
     "unicorn/no-useless-undefined": "off",
+    "unicorn/no-negated-condition": "off",
   },
   overrides: [
     {

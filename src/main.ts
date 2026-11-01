@@ -3,7 +3,7 @@ import { routes } from "vue-router/auto-routes";
 
 import App from "./app.vue";
 
-import "@/main.css";
+import "@/css/main.css";
 
 export const createApp = ViteSSG(App, {
   routes,

@@ -1,47 +1,55 @@
-<script lang="ts" setup>
+<script setup lang="ts">
 import { Toaster, type ToasterProps } from "vue-sonner";
 
+import {
+  IconLoader2,
+  IconCircleCheck,
+  IconCircleX,
+  IconInfoCircle,
+  IconAlertTriangle,
+  IconX,
+} from "@tabler/icons-vue";
+
 import { cn } from "@/lib/utils";
+import { resolvedTheme } from "@/composables/use-appearance";
 
 import "vue-sonner/style.css";
 
-const properties = defineProps<ToasterProps>();
-
-const currentTheme = computed(() => (isDark.value ? "dark" : "light"));
+const props = defineProps<ToasterProps>();
 </script>
 
 <template>
   <Toaster
-    v-bind="properties"
+    v-bind="props"
     position="bottom-right"
     :close-button="true"
     close-button-position="top-right"
     :duration="5000"
-    :class="cn('toaster group', properties.class)"
-    :theme="currentTheme"
+    :class="cn('toaster group', props.class)"
+    :theme="resolvedTheme"
   >
     <template #loading-icon>
-      <IPhSpinnerGapBold class="size-4 animate-spin" />
+      <IconLoader2 class="size-4 animate-spin" />
     </template>
 
     <template #success-icon>
-      <IPhCheckCircleFill class="size-4" />
+      <IconCircleCheck class="size-4" />
     </template>
 
     <template #error-icon>
-      <IPhWarningCircleFill class="size-4" />
+      <IconCircleX class="size-4" />
     </template>
 
     <template #info-icon>
-      <IPhInfoFill class="size-4" />
+      <IconInfoCircle class="size-4" />
     </template>
 
     <template #warning-icon>
-      <IPhWarningFill class="size-4" />
+      <IconAlertTriangle class="size-4" />
     </template>
 
     <template #close-icon>
-      <IPhX class="size-4" />
+      <IconX class="size-4" />
     </template>
   </Toaster>
 </template>

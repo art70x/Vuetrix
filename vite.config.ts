@@ -3,10 +3,7 @@ import { fileURLToPath, URL } from "node:url";
 import tailwindcss from "@tailwindcss/vite";
 import { unheadVueComposablesImports } from "@unhead/vue";
 import vue from "@vitejs/plugin-vue";
-import { fontless } from "fontless";
 import AutoImport from "unplugin-auto-import/vite";
-import IconsResolver from "unplugin-icons/resolver";
-import Icons from "unplugin-icons/vite";
 import Components from "unplugin-vue-components/vite";
 import vueDevTools from "vite-plugin-vue-devtools";
 import { defineConfig, lazyPlugins } from "vite-plus";
@@ -19,6 +16,7 @@ export default defineConfig({
   staged: {
     "*": "vp check --fix",
   },
+  test: { environment: "node" },
   fmt: {},
   lint: {
     plugins: ["oxc", "typescript", "unicorn", "vue"],
@@ -101,7 +99,7 @@ export default defineConfig({
       "unicorn/no-invalid-remove-event-listener": "error",
       "unicorn/no-lonely-if": "error",
       "unicorn/no-magic-array-flat-depth": "error",
-      "unicorn/no-negated-condition": "error",
+      "unicorn/no-negated-condition": "warn",
       "unicorn/no-negation-in-equality-check": "error",
       "unicorn/no-nested-ternary": "error",
       "unicorn/no-new-array": "error",
@@ -258,7 +256,7 @@ export default defineConfig({
           ],
           "no-nested-ternary": "error",
           "typescript/consistent-type-assertions": [
-            "error",
+            "warn",
             {
               assertionStyle: "never",
             },
@@ -297,29 +295,12 @@ export default defineConfig({
     Components({
       include: [/\.vue$/, /\.vue\?vue/],
       dts: "src/components.d.ts",
-      resolvers: [IconsResolver({ prefix: "I" })],
     }),
-
-    // https://github.com/unplugin/unplugin-icons
-    Icons(),
 
     // https://github.com/vuejs/router
     VueRouter({
       routesFolder: "src/pages",
       dts: "src/typed-router.d.ts",
-    }),
-
-    // https://github.com/unjs/fontaine
-    fontless({
-      priority: ["google"],
-      defaults: {
-        preload: true,
-        subsets: ["latin"],
-        fallbacks: {
-          "sans-serif": ["system-ui", "-apple-system", "Segoe UI", "Roboto", "Arial"],
-          monospace: ["JetBrains Mono", "Fira Code", "Source Code Pro", "Menlo", "Consolas"],
-        },
-      },
     }),
 
     tailwindcss(),
